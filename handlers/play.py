@@ -414,8 +414,8 @@ async def m_cb(b, cb):
         else:
             await cb.answer('Chat is not connected!', show_alert=True)
 
-@Client.on_message(command("play") & other_filters)
-async def play(_, message: Message):
+@Client.on_message(command("ytt") & other_filters)
+async def ytt(_, message: Message):
     global que
     lel = await message.reply("🔄 **Processing**")
     administrators = await get_administrators(message.chat)
@@ -482,9 +482,9 @@ async def play(_, message: Message):
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
-        url = f"https://youtube.com{results[0]['url_suffix']}"
         #print(results)
-        title = results[0]["title"][:40]       
+        title = results[0]["title"][:40]      
+        url = f"https://youtube.com{results[0]['url_suffix']}"
         thumbnail = results[0]["thumbnails"][0]
         thumb_name = f'thumb{title}.jpg'
         thumb = requests.get(thumbnail, allow_redirects=True)
@@ -506,12 +506,6 @@ async def play(_, message: Message):
                     InlineKeyboardButton('Menu ⏯ ', callback_data='menu')
                 
                 ],                     
-                [
-                    InlineKeyboardButton(
-                        text="Watch On YouTube 🎬",
-                        url=f"{url}")
-
-                ],
                 [       
                     InlineKeyboardButton(
                         text="❌ Close",
@@ -560,11 +554,11 @@ async def play(_, message: Message):
 
 
 @Client.on_message(
-    filters.command("dplay")
+    filters.command("ghff")
     & filters.group
     & ~ filters.edited
 )
-async def deezer(client: Client, message_: Message):
+async def ghff(client: Client, message_: Message):
     global que
     lel = await message_.reply("🔄 **Processing**")
     administrators = await get_administrators(message_.chat)
@@ -639,12 +633,6 @@ async def deezer(client: Client, message_: Message):
                  InlineKeyboardButton('📖 Playlist', callback_data='playlist'),
                  InlineKeyboardButton('Menu ⏯ ', callback_data='menu')     
              ],                     
-             [
-                 InlineKeyboardButton(
-                     text="Listen On Deezer 🎬",
-                     url=f"{url}")
-
-             ],
              [       
                  InlineKeyboardButton(
                      text="❌ Close",
@@ -690,11 +678,11 @@ async def deezer(client: Client, message_: Message):
 
 
 @Client.on_message(
-    filters.command("splay")
+    filters.command("huff")
     & filters.group
     & ~ filters.edited
 )
-async def jiosaavn(client: Client, message_: Message):
+async def huff(client: Client, message_: Message):
     global que
     lel = await message_.reply("🔄 **Processing**")
     administrators = await get_administrators(message_.chat)
@@ -773,11 +761,6 @@ async def jiosaavn(client: Client, message_: Message):
                InlineKeyboardButton('📖 Playlist', callback_data='playlist'),
                InlineKeyboardButton('Menu ⏯ ', callback_data='menu')   
              ],                     
-             [
-               InlineKeyboardButton(
-                   text="Join Updates Channel",
-                   url='https://t.me/daisyxupdates')
-             ],
              [       
                InlineKeyboardButton(
                    text="❌ Close",
